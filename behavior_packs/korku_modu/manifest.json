@@ -1,0 +1,18 @@
+{
+  "format_version": 2,
+  "header": {
+    "description": "Korku Modu - Siyah ve mor gözlü yardımcı küp, sorular soruyor, sonra Ender Man'e dönüşüp saldırıyor",
+    "name": "Bayenderman Korku Modu",
+    "uuid": "12345678-1234-5678-1234-567812345678",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 0]
+  },
+  "modules": [
+    {
+      "description": "Korku Modu Davranışları",
+      "type": "behavior",
+      "uuid": "87654321-4321-8765-4321-876543218765",
+      "version": [1, 0, 0]
+    }
+  ]
+}

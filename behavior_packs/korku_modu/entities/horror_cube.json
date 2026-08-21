@@ -1,0 +1,103 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "bayenderman:horror_cube",
+      "is_summonable": true,
+      "is_spawnable": true,
+      "is_experimental": false
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["mob", "horror_cube"]
+      },
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+      "minecraft:movement": {
+        "value": 0.3
+      },
+      "minecraft:navigation.generic": {
+        "can_path_over_water": true
+      },
+      "minecraft:physics": {},
+      "minecraft:collision_box": {
+        "width": 1.0,
+        "height": 1.0
+      },
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:damage_sensor": [
+        {
+          "on_damage": {
+            "event": "horror_cube:take_damage"
+          },
+          "damage_modifier": 0.5
+        }
+      ]
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": ["phase_1_assistant"]
+        }
+      },
+      "horror_cube:take_damage": {
+        "sequence": [
+          {
+            "randomize": [
+              {
+                "weight": 50,
+                "add": {
+                  "component_groups": ["ask_question"]
+                }
+              },
+              {
+                "weight": 50
+              }
+            ]
+          }
+        ]
+      },
+      "horror_cube:transform_to_enderman": {
+        "remove": {
+          "component_groups": ["phase_1_assistant"]
+        },
+        "add": {
+          "component_groups": ["phase_2_enderman"]
+        }
+      }
+    },
+    "component_groups": {
+      "phase_1_assistant": {
+        "minecraft:behavior.random_look_around": {
+          "priority": 3
+        },
+        "minecraft:behavior.follow_parent": {
+          "priority": 5,
+          "speed_multiplier": 1.0
+        }
+      },
+      "ask_question": {
+        "minecraft:behavior.random_look_around": {
+          "priority": 2
+        }
+      },
+      "phase_2_enderman": {
+        "minecraft:behavior.melee_attack": {
+          "priority": 1,
+          "speed_multiplier": 1.5,
+          "track_target": true,
+          "reach_multiplier": 2.0
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 5,
+          "speed_multiplier": 1.8
+        }
+      }
+    }
+  }
+}
